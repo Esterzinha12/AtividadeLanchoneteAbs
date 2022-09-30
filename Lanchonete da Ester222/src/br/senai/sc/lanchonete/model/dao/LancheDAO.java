@@ -32,9 +32,11 @@ public class LancheDAO {
                 pstm.execute();
             } catch (Exception e) {
                 throw new RuntimeException("Erro na preparação do comando sql 1");
+//                e.printStackTrace();
             }
         } catch (Exception e) {
             throw new RuntimeException("Erro na preparação do comando sql 2");
+//            e.printStackTrace();
         }
         System.out.println("Cadastro chegou ao fim");
     }

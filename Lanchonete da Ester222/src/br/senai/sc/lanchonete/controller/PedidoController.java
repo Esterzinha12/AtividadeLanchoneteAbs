@@ -14,12 +14,15 @@ public class PedidoController {
             case 1:
                 double peso = Double.parseDouble(add);
                 new LancheController().cadastrar(codigo, descricao, preco, peso, tipo);
+                break;
             case 2:
                 int volume = Integer.parseInt(add);
                 new BebidaController().cadastrar(codigo, descricao, preco, volume, tipo);
+                break;
             case 3:
                 String tamanho = add;
                 new PorcaoController().cadastrar(codigo, descricao, preco, tamanho, tipo);
+                break;
         }
     }
 //
