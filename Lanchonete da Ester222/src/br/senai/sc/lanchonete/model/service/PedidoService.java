@@ -9,9 +9,10 @@ import java.util.Set;
 
 public class PedidoService {
 
-    public void inserir(Pedido pedido) throws SQLException {
-        new PedidoDAO().inserir(pedido);
-    }
+//    public void inserir(Pedido pedido) throws SQLException {
+//        new PedidoDAO().inserir(pedido);
+//    }
+
 
 //
 //    public void excluir(Integer codigo) throws SQLException{

@@ -1,7 +1,9 @@
 package br.senai.sc.lanchonete.view;
 
 import br.senai.sc.lanchonete.controller.PedidoController;
+import br.senai.sc.lanchonete.model.entities.Lanche;
 import br.senai.sc.lanchonete.model.entities.Pedido;
+import br.senai.sc.lanchonete.model.service.LancheService;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,13 +22,18 @@ public class Main {
         menu();
     }
 
+    /**
+     * Menu para o usuario selecionar a ação que deseja fazer;
+     *
+     * @throws SQLException
+     */
     private static void menu() throws SQLException {
 
         System.out.print("" + "----------MENU----------\n" + "1 - Listar\n" + "2 - Cadastrar\n" + "3 - Editar\n"
                 + "4 - Remover\n" + "5 - Encerrar\n" + "> ");
         switch (sc.nextInt()) {
             case 1:
-//                listarPedidos();
+                listarPedidos();
 //			tipo=selecionaTipo();
 //			tipo.listar();
                 break;
@@ -39,7 +46,7 @@ public class Main {
                 break;
 
             case 4:
-//                remover();
+                remover();
                 break;
 
             case 5:
@@ -49,19 +56,37 @@ public class Main {
         menu();
     }
 
-//	private static void listarPedidos() throws SQLException {
-//		tipo=selecionaTipo();
-//
-//		switch (tipo){
-//			case 1:
-//				System.out.println(PedidoController.selecionarTudo());
-//				break;
-//			case 2:
-//
-//		}
-//	}
+    /**
+     * Lista por codigo ou por tabela de um tipo expecifico;
+     *
+     * @throws SQLException
+     */
+    private static void listarPedidos() throws SQLException {
+        int tipo = selecionaTipo();
+        System.out.println("Listar: \n1-Tipo expecifico \n2- Por código");
+        int opcao = sc.nextInt();
 
+        switch (opcao) {
+            case 1: {
+                ArrayList<Lanche> lanches = new ArrayList<>(PedidoController.selecionarPorTipo(tipo));
+                for (Lanche l : lanches) {
+                    System.out.println(l.toString());
+                }
+                break;
+            }
+            case 2:
+                System.out.println("Insira o codigo do item a ser removido: ");
+                int codigo = sc.nextInt();
+                PedidoController.selecionarPorCodigo(tipo, codigo);
+                break;
+        }
+    }
 
+    /**
+     * coleta os dados dos pedidos para o cadastro
+     *
+     * @throws SQLException
+     */
     private static void coletaDados() throws SQLException {
         System.out.print("CADASTRAR: ");
         int tipo = selecionaTipo();
@@ -88,6 +113,11 @@ public class Main {
         }
     }
 
+    /**
+     * Seleciona o tipo de pedido, para fazer as ações;
+     *
+     * @return
+     */
     private static int selecionaTipo() {
         System.out.println("" + "Selecione o que deseja\n" + "1 - Lanche\n" + "2 - Bebida\n" + "3 - Porcao");
         int tipo = sc.nextInt();
@@ -106,15 +136,21 @@ public class Main {
         return -1;
     }
 
-//    private static void remover() {
-//        System.out.println("Insira o codigo do item a ser removido: ");
-//        int codigo = sc.nextInt();
-//
-//        Pedido.remover(Pedido.valida(codigo));
-//
-//
-//        menu();
-//    }
+    /**
+     * Remove pedido atraves do codigo do mesmo;
+     *
+     * @throws SQLException
+     */
+    private static void remover() throws SQLException {
+        int tipo = selecionaTipo();
+
+        System.out.println("Insira o codigo do item a ser removido: ");
+        int codigo = sc.nextInt();
+
+        PedidoController.excluir(codigo, tipo);
+
+        menu();
+    }
 
 //    private static void editar() {
 //        System.out.println("Insira o codigo do item a ser editado: ");

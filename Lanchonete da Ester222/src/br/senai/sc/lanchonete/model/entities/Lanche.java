@@ -23,7 +23,8 @@ public class Lanche {
 		this.descricao = descricao;
 	}
 
-	public static Lanche cadastrar(Integer codigo, String descricao, Double preco, double peso) {
+
+    public static Lanche cadastrar(Integer codigo, String descricao, Double preco, double peso) {
 		return new Lanche(codigo, descricao, preco, peso);
 	}
 

@@ -1,8 +1,6 @@
 package br.senai.sc.lanchonete.controller;
 
-import br.senai.sc.lanchonete.model.entities.Bebida;
-import br.senai.sc.lanchonete.model.entities.Pedido;
-import br.senai.sc.lanchonete.model.service.PedidoService;
+import br.senai.sc.lanchonete.model.entities.Lanche;
 
 import java.sql.SQLException;
 import java.util.Set;
@@ -25,24 +23,51 @@ public class PedidoController {
                 break;
         }
     }
-//
-//    public void excluir(Integer codigo) throws SQLException {
-//        PedidoService service = new PedidoService();
-//        service.excluir(codigo);
-//    }
-//
-//    public Pedido selecionarPorCodigo(Integer codigo) throws SQLException {
-//        PedidoService service = new PedidoService();
-//        return service.selecionarPorCodigo(codigo);
-//    }
-//
-//    public static Set<Pedido> selecionarTudo() throws SQLException {
-//        PedidoService service = new PedidoService();
-//        return service.selecionarTudo();
-//    }
-//
-//    public Pedido selecionarPorTipo(Pedido tipo) throws SQLException {
-//        PedidoService service = new PedidoService();
-//        return service.selecionarPorTipo(tipo);
-//    }
+
+    public static void excluir(Integer codigo, Integer tipo) throws SQLException {
+        switch (tipo) {
+            case 1:
+                new LancheController().excluir(codigo);
+                break;
+            case 2:
+//                new BebidaController().excluir(codigo);
+                break;
+            case 3:
+//                new PorcaoController().excluir(codigo);
+                break;
+        }
+    }
+
+        public static Set<Lanche> selecionarPorTipo(int tipo) throws SQLException {
+            switch (tipo) {
+                case 1:
+                    return new LancheController().selecionarPorTipo();
+                case 2:
+//                new BebidaController().selecionarPorTipo();
+                    break;
+                case 3:
+//                new PorcaoController().selecionarPorTipo();
+                    break;
+            }
+            return null;
+        }
+
+
+    public static void selecionarPorCodigo(Integer codigo, Integer tipo) throws SQLException {
+        switch (tipo) {
+            case 1:
+                new LancheController().selecionarPorCodigo(codigo);
+                break;
+            case 2:
+//                new BebidaController().selecionarPorCodigo(codigo);
+                break;
+            case 3:
+//                new PorcaoController().selecionarPorCodigo(codigo);
+                break;
+        }
+    }
+
+
+
+
 }

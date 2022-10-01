@@ -70,7 +70,7 @@ public class PedidoDAO {
     }
 
     public Set<Pedido> selecionarTudo() throws SQLException{
-        String sqlCommand = "SELECT * FROM PEDIDO";
+        String sqlCommand = "SELECT * FROM LANCHE, BEBIDA, PORCAO";
         try(PreparedStatement pstm= conn.prepareStatement(sqlCommand)){
             try(ResultSet resultSet= pstm.executeQuery()){
                 while(resultSet.next()){

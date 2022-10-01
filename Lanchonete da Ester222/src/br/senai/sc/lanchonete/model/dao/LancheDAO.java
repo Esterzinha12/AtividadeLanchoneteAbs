@@ -73,7 +73,7 @@ public class LancheDAO {
         }
     }
 
-    public Set<Lanche> selecionarTudo() throws SQLException{
+    public Set<Lanche> selecionarPorTipo() throws SQLException{
         String sqlCommand = "SELECT * FROM LANCHE";
         try(PreparedStatement pstm= conn.prepareStatement(sqlCommand)){
             try(ResultSet resultSet= pstm.executeQuery()){
@@ -101,4 +101,6 @@ public class LancheDAO {
             throw new RuntimeException();
         }
     }
+
+
 }
